@@ -25,4 +25,40 @@
 #
 #Delete these comments before commit!
 #Good luck.
-    
+
+class Event:
+    def __init__(self,name= "", time = 0):
+        self.name = name
+        self.time = time
+         
+class Car:
+    def __init__(self):
+        self.speed = 0
+        self.wheel_angle = 0
+        self.startMode = False;
+        self.action = ['start', 'gainSpeed', 'obstacle', 'turn',]
+
+    def act(self, event):
+        if event.name in self.action:
+            print(event.name)
+            if event.name is 'start':
+                self.startMode = True
+            if event.name is 'gainSpeed':
+                self.speed += 10
+        else:
+            print('Unknown event.')
+            
+def eventLoop():
+    car = Car()
+    while True:
+        print("If you want to quit a program, press q")
+        event = Event()
+        event.name = raw_input('Please write a name of event:  ')
+        if event.name is "q":
+            break
+        event.time = int(raw_input('Please give information about how long event would be: '))
+        car.act(event)
+        print(car.speed)
+        
+eventLoop()
+
