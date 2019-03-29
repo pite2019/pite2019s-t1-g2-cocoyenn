@@ -26,7 +26,7 @@
 #Delete these comments before commit!
 #Good luck.
 
-from car import Car
+import car as c
 import event as evn
 
 def print_defined_events():
@@ -34,7 +34,6 @@ def print_defined_events():
 
 def program_end_check():
     return input("If you want to quit a program, type 'quit'...\t") == "quit"
-
 
 def event_creator():
     print('Select next event: ')
@@ -51,8 +50,8 @@ def event_creator():
         return 0
 
 if __name__ == "__main__":
-    c = Car()
-    print("Initial parametrs:\n", c)
+    car = c.Car()
+    print("Initial parametrs:\n", car)
     event = evn.Event
     while True:
         if program_end_check():
@@ -60,8 +59,8 @@ if __name__ == "__main__":
         event = event_creator()
         if isinstance(event, evn.Event):
             event.define()
-        c.act(event)
-        print(c)
+        car.act(event)
+        print(car)
         
 
 
