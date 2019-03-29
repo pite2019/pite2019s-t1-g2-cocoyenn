@@ -26,39 +26,42 @@
 #Delete these comments before commit!
 #Good luck.
 
-class Event:
-    def __init__(self,name= "", time = 0):
-        self.name = name
-        self.time = time
-         
-class Car:
-    def __init__(self):
-        self.speed = 0
-        self.wheel_angle = 0
-        self.startMode = False;
-        self.action = ['start', 'gainSpeed', 'obstacle', 'turn',]
+from car import Car
+import event as evn
 
-    def act(self, event):
-        if event.name in self.action:
-            print(event.name)
-            if event.name is 'start':
-                self.startMode = True
-            if event.name is 'gainSpeed':
-                self.speed += 10
-        else:
-            print('Unknown event.')
-            
-def eventLoop():
-    car = Car()
+def print_defined_events():
+    pass
+
+def program_end_check():
+    return input("If you want to quit a program, type 'quit'...\t") == "quit"
+
+
+def event_creator():
+    print('Select next event: ')
+    name = input("\tEvent name: ")
+    if name == 'Start':
+        return evn.Start()
+    if name == 'End':
+        return evn.End()   
+    if name == 'Speed':
+        return evn.ChangeSpeed()
+    if name == 'Turn':
+        return evn.Turn()           
+    else:
+        return 0
+
+if __name__ == "__main__":
+    c = Car()
+    print("Initial parametrs:\n", c)
+    event = evn.Event
     while True:
-        print("If you want to quit a program, press q")
-        event = Event()
-        event.name = raw_input('Please write a name of event:  ')
-        if event.name is "q":
+        if program_end_check():
             break
-        event.time = int(raw_input('Please give information about how long event would be: '))
-        car.act(event)
-        print(car.speed)
+        event = event_creator()
+        if isinstance(event, evn.Event):
+            event.define()
+        c.act(event)
+        print(c)
         
-eventLoop()
+
 
